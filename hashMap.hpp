@@ -266,6 +266,6 @@ class HashMap
 
 	private:
 	HashLink<K, V>** mTable;
-	int mSize; 
-	int mCapacity; 
+	int mSize; // number of links in the table
+	int mCapacity; // number of buckets
 };
