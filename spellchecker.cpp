@@ -1,8 +1,3 @@
-/*
- * Alex Li
- * spellChecker implementation
- */
-
 #include "hashMap.hpp"
 #include <fstream>
 #include <ctime>
