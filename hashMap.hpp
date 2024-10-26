@@ -3,9 +3,7 @@
 #include <iostream>
 #include <string>
 
-using std::cout;
-using std::endl;
-using std::string;
+using namespace std;
 
 #define HASH_FUNCTION hashFunction1
 #define MAX_TABLE_LOAD .75
@@ -283,10 +281,10 @@ public:
 					entry = entry->getNext();
 				}
 				os << "nullptr";
-				os << endl;
+				os << '\n';
 			}
 		}
-		os << endl;
+		os << '\n';
 		return os;
 	}
 

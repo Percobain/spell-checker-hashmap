@@ -2,9 +2,7 @@
 #include <fstream>
 #include <ctime>
 
-using std::ifstream;
-using std::clock;
-using std::cin;
+using namespace std;
 
 // prototypes
 int loadDictionary(string fname, HashMap<string, int> *map);
@@ -16,7 +14,7 @@ int main() {
 	string dictionaryFile = "dictionary.txt";
 	HashMap<string, int> *dictionary = new HashMap<string, int> (1000);
 
-	cout << "Loading dictionary file..." << endl;
+	cout << "Loading dictionary file..." << '\n';
 	// load dictionary into hash map
 	start = clock();
 	int loadStatus = loadDictionary(dictionaryFile, dictionary);
@@ -25,14 +23,14 @@ int main() {
 	elapsed /= CLOCKS_PER_SEC;
 
 	if (loadStatus == -1) {
-		cout << "Failed to load dictionary file!" << endl;
+		cout << "Failed to load dictionary file!" << '\n';
 		delete dictionary;
 		return 1;
 	}
 
-	cout << "Dictionary loaded in " << elapsed << " seconds." << endl;
-	cout << "Dictionary contains " << dictionary->mapSize() << " entries hashed into " << dictionary->mapCapacity() << " buckets." << endl;
-	cout << "Table load: " << dictionary->mapTableLoad() << endl;
+	cout << "Dictionary loaded in " << elapsed << " seconds." << '\n';
+	cout << "Dictionary contains " << dictionary->mapSize() << " entries hashed into " << dictionary->mapCapacity() << " buckets." << '\n';
+	cout << "Table load: " << dictionary->mapTableLoad() << '\n';
 
 	// run spellChecker with loaded dictionary
 	spellChecker(dictionary);
@@ -130,11 +128,11 @@ void spellChecker(HashMap<string, int> *dictionary) {
 		// spell check logic
 		// input word is spelled correctly if word is found in hash table
 		else if (dictionary->mapContains(inputBuffer))
-			cout << "\n\"" << inputBuffer << "\"" << " is spelled correctly.\n" << endl;
+			cout << "\n\"" << inputBuffer << "\"" << " is spelled correctly.\n" << '\n';
 
 		// print suggested words based on edit distance
 		else {
-			cout << "\nDid you mean: " << endl;
+			cout << "\nDid you mean: " << '\n';
 			for (int i = 0; i < dictionary->mapCapacity(); i++) {
 				HashLink<string, int> *seeker = dictionary->mapTableLink(i);
 				while (seeker) {
@@ -148,13 +146,13 @@ void spellChecker(HashMap<string, int> *dictionary) {
 						// calculate edit distance between mispelled word and filtered words
 						int LD = calcLD(inputBuffer, seeker->getKey());
                     	if ((LD == 1 || LD == 2)) 
-                    		cout << seekerKey << endl;
+                    		cout << seekerKey << '\n';
                 	}
 
                 	seeker = seeker->getNext();
 				}
 			}
-			cout << endl;
+			cout << '\n';
 		} 
 	}
 }
