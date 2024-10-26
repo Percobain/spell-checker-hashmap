@@ -80,6 +80,11 @@ int calcLD(string word1, string word2) {
 			if (c1 == c2)
 				matrix[i][j] = matrix[i - 1][j - 1];
 
+// 					   h a t
+// 					 c 1 2 3
+// 					 a 2 1 2
+// 					 t 3 2 1
+
 			else {
 				int deletion = matrix[i - 1][j] + 1;
 				int insert = matrix[i][j - 1] + 1;
@@ -116,10 +121,13 @@ void spellChecker(HashMap<string, int> *dictionary) {
 
 		else {
 			cout << "\nDid you mean: " << '\n';
+			
 			for (int i = 0; i < dictionary->mapCapacity(); i++) {
 				HashLink<string, int> *seeker = dictionary->mapTableLink(i);
+
 				while (seeker) {
 					string seekerKey = seeker->getKey();
+
 					if (seekerKey.length() >= inputBuffer.length() && seekerKey[0] == inputBuffer[0]) {
 						int LD = calcLD(inputBuffer, seeker->getKey());
                     	if ((LD == 1 || LD == 2)) 
